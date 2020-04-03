@@ -1,0 +1,4 @@
+*.o
+sxbg
+sxbg.1.scd
+.clang-format

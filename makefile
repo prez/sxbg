@@ -13,7 +13,7 @@ sxbg: sxbg.o config.mk
 dist:
 	rm -rf "$(PROG)-$(VERSION)"
 	mkdir "$(PROG)-$(VERSION)"
-	cp -r LICENSE makefile sxbg.c $(PROG).1 \
+	cp -r LICENSE makefile config.mk sxbg.c $(PROG).1 \
 		"$(PROG)-$(VERSION)"
 	tar -cf - "$(PROG)-$(VERSION)" | gzip -c > "$(PROG)-$(VERSION).tar.gz"
 	rm -rf "$(PROG)-$(VERSION)"
