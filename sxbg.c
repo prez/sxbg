@@ -7,6 +7,11 @@
 #include <xcb/xcb.h>
 #include <xcb/xcb_aux.h>
 
+enum {
+	W = 1920,
+	H = 1080,
+};
+
 int
 main(int argc, char **argv)
 {
@@ -57,7 +62,7 @@ main(int argc, char **argv)
 	if (e)
 		errx(EXIT_FAILURE, "failed to set background");
 
-	xcb_clear_area(conn, 0, root, 0, 0, 0, 0);
+	xcb_clear_area(conn, 1, root, 0, 0, W, H);
 	xcb_flush(conn);
 	xcb_disconnect(conn);
 }
