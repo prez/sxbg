@@ -1,3 +1,4 @@
 sxbg - set background to a colour
 
 simple X background colour setter in pure xcb.
+(don't actually use this, it's buggy)
