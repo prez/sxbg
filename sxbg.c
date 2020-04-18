@@ -63,6 +63,6 @@ main(int argc, char **argv)
 		errx(EXIT_FAILURE, "failed to set background");
 
 	xcb_clear_area(conn, 1, root, 0, 0, W, H);
-	xcb_flush(conn);
+	xcb_aux_sync(conn);
 	xcb_disconnect(conn);
 }
