@@ -3,5 +3,4 @@ sxbg - set background to a colour
 simple X background colour setter in pure xcb.
 
 TODO:
-* clear the whole screen instead of a fixed resolution
 * make it work with compositors like picom
