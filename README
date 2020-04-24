@@ -4,5 +4,4 @@ simple X background colour setter in pure xcb.
 
 TODO:
 * clear the whole screen instead of a fixed resolution
-* investigate what happens when screen resolution changes
 * make it work with compositors like picom

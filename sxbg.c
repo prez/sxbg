@@ -7,28 +7,15 @@
 #include <xcb/xcb.h>
 #include <xcb/xcb_aux.h>
 
-static uint16_t w = 0;
-static uint16_t h = 0;
-
-void
-screen_getsize(xcb_connection_t *conn, xcb_window_t root)
-{
-	xcb_get_geometry_cookie_t geomc = xcb_get_geometry(conn, root);
-	xcb_get_geometry_reply_t *geom = xcb_get_geometry_reply(conn, geomc, 0);
-	if (NULL == geom)
-		return;
-
-	w = geom->width;
-	h = geom->height;
-	free(geom);
-}
+enum {
+	W = 1920,
+	H = 1080,
+};
 
 int
 main(int argc, char **argv)
 {
 	char *hex = argv[1];
-	int scrp;
-
 	if (2 != argc || !(7 == strlen(hex) || 9 == strlen(hex))) {
 		fprintf(stderr, "usage: sxbg \"#RRGGBB[AA]\"\n");
 		return EXIT_FAILURE;
@@ -46,6 +33,7 @@ main(int argc, char **argv)
 			errx(EXIT_FAILURE, "failed to parse the colour %s", str);
 	}
 
+	int scrp;
 	xcb_connection_t *conn = xcb_connect(NULL, &scrp);
 	if (xcb_connection_has_error(conn))
 		errx(EXIT_FAILURE, "unable to connect to the X server");
@@ -74,8 +62,7 @@ main(int argc, char **argv)
 	if (e)
 		errx(EXIT_FAILURE, "failed to set background");
 
-	screen_getsize(conn, root);
-	xcb_clear_area(conn, 1, root, 0, 0, w, h);
+	xcb_clear_area(conn, 1, root, 0, 0, W, H);
 	xcb_aux_sync(conn);
 	xcb_disconnect(conn);
 }
